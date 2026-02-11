@@ -29,4 +29,23 @@ public class AuthController {
 
         return "User registered successfully";
     }
+    
+    @PostMapping("/login")
+    public String login(@RequestBody User loginRequest) {
+
+        var userOptional = userRepository.findByEmail(loginRequest.getEmail());
+
+        if (userOptional.isEmpty()) {
+            return "User not found";
+        }
+
+        User user = userOptional.get();
+
+        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
+            return "Invalid password";
+        }
+
+        return "Login successful";
+    }
+
 }
