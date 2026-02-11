@@ -95,38 +95,38 @@ src/main/resources/application.properties
 
 ### Example:
 
-    ```bash
+```bash
     spring.datasource.url=jdbc:mysql://localhost:3306/task_manager_db
     spring.datasource.username=root
     spring.datasource.password=YOUR_PASSWORD
     spring.jpa.hibernate.ddl-auto=update
-    ```
+```
 
 ### 3. Run the application:
 
-    ```bash
+```bash
     mvn spring-boot:run
-    ```
+```
 
 ### Backend runs on:
 
-    ```bash
+```bash
     http://localhost:8080
-    ```
+```
 
 ## ⚙️ Frontend Setup
 
 ### 1. Navigate to frontend folder:
 
-     ```bash
-     cd frontend
-     ```
+```bash
+    cd frontend
+```
 
 ### 2. Install dependencies:
 
-     ```bash
-     npm install
-     ```
+```bash
+    npm install
+```
 
 ### 3. Start React app:
 
