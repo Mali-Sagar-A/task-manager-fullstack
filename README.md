@@ -105,37 +105,40 @@ src/main/resources/application.properties
 ### 3. Run the application:
 
     ```bash
+    mvn spring-boot:run
+    ```
 
-mvn spring-boot:run
-`Backend runs on:
-   `bash
-http://localhost:8080
-```
+### Backend runs on:
+
+    ```bash
+    http://localhost:8080
+    ```
 
 ## ⚙️ Frontend Setup
 
 ### 1. Navigate to frontend folder:
 
-        ```bash
-        cd frontend
-        ```
+     ```bash
+     cd frontend
+     ```
 
 ### 2. Install dependencies:
 
-        ```bash
-        npm install
-        ```
+     ```bash
+     npm install
+     ```
 
 ### 3. Start React app:
 
-````bash
- npm start
- ```
+```bash
+npm start
+```
 
 Frontend runs on:
+
 ```bash
 http://localhost:3000
-````
+```
 
 ## 🔐 Authentication Flow
 
