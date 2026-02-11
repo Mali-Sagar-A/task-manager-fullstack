@@ -59,6 +59,7 @@ This project demonstrates secure authentication using **JWT**, user-based author
 
 ## 📂 Project Structure
 
+```
 task-manager-fullstack
 │
 ├── backend
@@ -75,6 +76,7 @@ task-manager-fullstack
 │ └── styles.css
 │
 └── README.md
+```
 
 ---
 
