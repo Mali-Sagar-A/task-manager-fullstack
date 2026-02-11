@@ -2,6 +2,8 @@ package com.mali.taskmanager.controller;
 
 import com.mali.taskmanager.model.User;
 import com.mali.taskmanager.repository.UserRepository;
+import com.mali.taskmanager.security.JwtUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,12 @@ public class AuthController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    
+    @Autowired
+    private JwtUtil jwtUtil;
+    
+    
+
 
     @PostMapping("/register")
     public String register(@RequestBody User user) {
@@ -45,7 +53,15 @@ public class AuthController {
             return "Invalid password";
         }
 
-        return "Login successful";
+        return jwtUtil.generateToken(user.getEmail());
     }
+    
+    @GetMapping("/test")
+    public String test() {
+        return "JWT works!";
+    }
+
+
+
 
 }
