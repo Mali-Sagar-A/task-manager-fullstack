@@ -80,44 +80,64 @@ task-manager-fullstack
 
 ## ⚙️ Backend Setup
 
-1. Navigate to backend folder:
+### 1. Navigate to backend folder:
 
-   ```bash
-   cd backend
+```bash
+cd backend
 
-   ```
+```
 
-2. Configure MySQL in:
-   src/main/resources/application.properties
+### 2. Configure MySQL in:
 
-Example:
-spring.datasource.url=jdbc:mysql://localhost:3306/task_manager_db
-spring.datasource.username=root
-spring.datasource.password=YOUR_PASSWORD
-spring.jpa.hibernate.ddl-auto=update
+```bash
+src/main/resources/application.properties
+```
 
-3. Run the application:
+### Example:
 
-   mvn spring-boot:run
+    ```bash
+    spring.datasource.url=jdbc:mysql://localhost:3306/task_manager_db
+    spring.datasource.username=root
+    spring.datasource.password=YOUR_PASSWORD
+    spring.jpa.hibernate.ddl-auto=update
+    ```
 
-Backend runs on:
+### 3. Run the application:
+
+    ```bash
+
+mvn spring-boot:run
+`Backend runs on:
+   `bash
 http://localhost:8080
+```
 
-⚙️ Frontend Setup
+## ⚙️ Frontend Setup
 
-1. Navigate to frontend folder:
-   cd frontend
+### 1. Navigate to frontend folder:
 
-2. Install dependencies:
-   npm install
+        ```bash
+        cd frontend
+        ```
 
-3. Start React app:
-   npm start
+### 2. Install dependencies:
+
+        ```bash
+        npm install
+        ```
+
+### 3. Start React app:
+
+````bash
+ npm start
+ ```
 
 Frontend runs on:
+```bash
 http://localhost:3000
+````
 
-🔐 Authentication Flow
+## 🔐 Authentication Flow
 
 1. User registers
 
@@ -133,14 +153,15 @@ http://localhost:3000
 
 7. Spring Security validates JWT on each request
 
-📡 API Endpoints
-Auth
+## 📡 API Endpoints
+
+### Auth
 
 - POST /api/auth/register
 
 - POST /api/auth/login
 
-Tasks (JWT Required)
+### Tasks (JWT Required)
 
 - GET /api/tasks
 
@@ -150,7 +171,7 @@ Tasks (JWT Required)
 
 - DELETE /api/tasks/{id}
 
-🧠 Architecture Highlights
+## 🧠 Architecture Highlights
 
 - Stateless authentication using JWT
 
@@ -166,7 +187,7 @@ Tasks (JWT Required)
 
 - Clean frontend-backend separation
 
-🔮 Future Improvements
+## 🔮 Future Improvements
 
 - Add form validation
 
@@ -180,12 +201,12 @@ Tasks (JWT Required)
 
 - Add unit and integration tests
 
-👨‍💻 Author
+## 👨‍💻 Author
 
 Developed by Sagar Mali
 Full Stack Developer (Java + React)
 
-📜 License
+## 📜 License
 
 This project is for educational and portfolio purposes.
 
