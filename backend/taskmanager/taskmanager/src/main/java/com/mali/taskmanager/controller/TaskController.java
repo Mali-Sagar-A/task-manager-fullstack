@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/tasks")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TaskController {
 
     private final TaskRepository taskRepository;
@@ -21,6 +22,7 @@ public class TaskController {
         this.taskRepository = taskRepository;
         this.userRepository = userRepository;
         System.out.println(SecurityContextHolder.getContext().getAuthentication());
+        
 
     }
 

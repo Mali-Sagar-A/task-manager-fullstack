@@ -1,8 +1,11 @@
 package com.mali.taskmanager.controller;
 
+import com.mali.taskmanager.dto.LoginRequest;
 import com.mali.taskmanager.model.User;
 import com.mali.taskmanager.repository.UserRepository;
 import com.mali.taskmanager.security.JwtUtil;
+
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -39,22 +42,29 @@ public class AuthController {
     }
     
     @PostMapping("/login")
-    public String login(@RequestBody User loginRequest) {
+    public Map<String, String> login(@RequestBody LoginRequest loginRequest) {
 
-        var userOptional = userRepository.findByEmail(loginRequest.getEmail());
+        var userOptional = userRepository
+                .findByEmailIgnoreCase(loginRequest.getEmail());
 
         if (userOptional.isEmpty()) {
-            return "User not found";
+            throw new RuntimeException("Invalid credentials");
         }
 
         User user = userOptional.get();
 
-        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
-            return "Invalid password";
+        if (!passwordEncoder.matches(
+                loginRequest.getPassword(),
+                user.getPassword())) {
+            throw new RuntimeException("Invalid credentials");
         }
 
-        return jwtUtil.generateToken(user.getEmail());
+        String token = jwtUtil.generateToken(user.getEmail());
+
+        return Map.of("token", token);
     }
+
+
     
     @GetMapping("/test")
     public String test() {
