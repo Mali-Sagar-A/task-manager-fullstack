@@ -11,3 +11,4 @@ Thumbs.db
 
 # Java
 backend/target/
+/.metadata/
