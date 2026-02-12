@@ -6,11 +6,16 @@ import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
+import org.springframework.beans.factory.annotation.Value;
 
 @Component
 public class JwtUtil {
 
-    private final String SECRET = "mysecretkeymysecretkeymysecretkey12345";
+   // private final String SECRET = "mysecretkeymysecretkeymysecretkey12345";
+    
+    @Value("${JWT_SECRET}")
+    private String SECRET;
+
 
     private Key getSigningKey() {
         return Keys.hmacShaKeyFor(SECRET.getBytes());
