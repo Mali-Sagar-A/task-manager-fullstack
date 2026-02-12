@@ -67,3 +67,10 @@ public class JwtFilter extends OncePerRequestFilter {
                 }
 
             } catch (Exception e) {
+                // Invalid token → ignore
+            }
+        }
+
+        filterChain.doFilter(request, response);
+    }
+}
