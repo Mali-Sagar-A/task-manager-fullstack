@@ -8,12 +8,13 @@ import com.mali.taskmanager.security.JwtUtil;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:3000")
 public class AuthController {
 
     @Autowired
@@ -42,13 +43,15 @@ public class AuthController {
     }
     
     @PostMapping("/login")
-    public Map<String, String> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
 
         var userOptional = userRepository
                 .findByEmailIgnoreCase(loginRequest.getEmail());
 
         if (userOptional.isEmpty()) {
-            throw new RuntimeException("Invalid credentials");
+            return ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body("Invalid credentials");
         }
 
         User user = userOptional.get();
@@ -56,13 +59,16 @@ public class AuthController {
         if (!passwordEncoder.matches(
                 loginRequest.getPassword(),
                 user.getPassword())) {
-            throw new RuntimeException("Invalid credentials");
+            return ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body("Invalid credentials");
         }
 
         String token = jwtUtil.generateToken(user.getEmail());
 
-        return Map.of("token", token);
+        return ResponseEntity.ok(Map.of("token", token));
     }
+
 
 
     
