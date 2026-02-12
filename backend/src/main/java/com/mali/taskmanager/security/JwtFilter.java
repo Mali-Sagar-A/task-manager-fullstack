@@ -32,11 +32,14 @@ public class JwtFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
 
         // ✅ Skip preflight & auth endpoints
-        if ("OPTIONS".equalsIgnoreCase(request.getMethod()) ||
-            request.getServletPath().startsWith("/api/auth")) {
-            filterChain.doFilter(request, response);
-            return;
-        }
+    	if ("OPTIONS".equalsIgnoreCase(request.getMethod()) ||
+    		    request.getServletPath().equals("/api/auth/login") ||
+    		    request.getServletPath().equals("/api/auth/register")) {
+
+    		    filterChain.doFilter(request, response);
+    		    return;
+    		}
+
 
         String authHeader = request.getHeader("Authorization");
 
