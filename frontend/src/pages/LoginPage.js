@@ -21,32 +21,30 @@ function LoginPage({ onLogin, goToRegister }) {
   };
 
   return (
-    <div className="container">
-      <h2>Login</h2>
+    <div className="auth-wrapper">
+      <div className="auth-card">
+        <h2>Login</h2>
 
-      <input
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+        <input
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <button onClick={handleLogin}>Login</button>
-      <p style={{ textAlign: "center" }}>
-        Don't have an account?{" "}
-        <span
-          style={{ color: "#007bff", cursor: "pointer" }}
-          onClick={goToRegister}
-        >
-          Register here
-        </span>
-      </p>
+        <button onClick={handleLogin}>Login</button>
+
+        <div className="auth-switch">
+          Don't have an account?{" "}
+          <span onClick={goToRegister}>Register here</span>
+        </div>
+      </div>
     </div>
   );
 }

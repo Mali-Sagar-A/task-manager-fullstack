@@ -83,14 +83,13 @@ function Dashboard() {
 
           {tasks.map((task) => (
             <div key={task.id} className="task-card">
-              <strong>{task.title}</strong>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <strong>{task.title}</strong>
 
-              <span
-                className={`task-status status-${task.status}`}
-                style={{ marginLeft: "10px" }}
-              >
-                {task.status}
-              </span>
+                <span className={`task-status status-${task.status}`}>
+                  {task.status}
+                </span>
+              </div>
 
               <p>{task.description}</p>
 

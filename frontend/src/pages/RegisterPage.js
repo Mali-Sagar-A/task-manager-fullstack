@@ -22,44 +22,35 @@ function RegisterPage({ onRegister }) {
   };
 
   return (
-    <div style={{ padding: "40px" }}>
-      <h2>Register</h2>
+    <div className="auth-wrapper">
+      <div className="auth-card">
+        <h2>Register</h2>
 
-      <input
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <br />
-      <br />
+        <input
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
 
-      <input
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <br />
-      <br />
+        <input
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <br />
-      <br />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <button onClick={handleRegister}>Register</button>
-      <p style={{ textAlign: "center" }}>
-        Already have an account?{" "}
-        <span
-          style={{ color: "#007bff", cursor: "pointer" }}
-          onClick={onRegister}
-        >
-          Login here
-        </span>
-      </p>
+        <button onClick={handleRegister}>Register</button>
+
+        <div className="auth-switch">
+          Already have an account? <span onClick={onRegister}>Login here</span>
+        </div>
+      </div>
     </div>
   );
 }
