@@ -31,44 +31,32 @@ public class JwtFilter extends OncePerRequestFilter {
             FilterChain filterChain
     ) throws ServletException, IOException {
 
-        // ✅ Skip preflight & auth endpoints
-    	if ("OPTIONS".equalsIgnoreCase(request.getMethod()) ||
-    		    request.getServletPath().equals("/api/auth/login") ||
-    		    request.getServletPath().equals("/api/auth/register")) {
+        String path = request.getServletPath();
 
-    		    filterChain.doFilter(request, response);
-    		    return;
-    		}
-
+        if (request.getMethod().equalsIgnoreCase("OPTIONS") ||
+            path.startsWith("/api/auth")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
         String authHeader = request.getHeader("Authorization");
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
-
             try {
                 String email = jwtUtil.extractEmail(token);
 
-                if (email != null &&
-                    SecurityContextHolder.getContext().getAuthentication() == null) {
-
-                    UsernamePasswordAuthenticationToken authentication =
-                        new UsernamePasswordAuthenticationToken(
-                            email,
-                            null,
-                            List.of(new SimpleGrantedAuthority("ROLE_USER"))
-                        );
-
-                    authentication.setDetails(
-                        new WebAuthenticationDetailsSource().buildDetails(request)
+                UsernamePasswordAuthenticationToken authentication =
+                    new UsernamePasswordAuthenticationToken(
+                        email, null, List.of(new SimpleGrantedAuthority("ROLE_USER"))
                     );
 
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
-                }
+                SecurityContextHolder.getContext().setAuthentication(authentication);
             } catch (Exception ignored) {}
         }
 
         filterChain.doFilter(request, response);
     }
+
 }
 
